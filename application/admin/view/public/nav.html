@@ -1,0 +1,25 @@
+<ul class="nav nav-list">
+						
+						{volist name="nav" id="vo"}
+						<li {if condition="$vo.controller eq request()->controller()"} class="active" {else /}{/if}>
+							<a href="/admin/{$vo.url}" {if condition="$vo.controller eq 'Index' "} {else /} class="dropdown-toggle" {/if}>
+								<i class="{$vo.icon}"></i>
+								<span class="menu-text">{$vo.menu_name}</span>
+								{if condition="$vo.cnav neq ''"}
+								{else /}
+								<b class="arrow icon-angle-down"></b>
+								{/if}
+							</a>
+							<ul class="submenu">
+								{volist name="vo.cnav" id="v"}
+								<li>
+									<a href="__ROOT__/admin/{$v.url}">
+										<i class="icon-double-angle-right"></i>
+										{$v.menu_name}
+									</a>
+								</li>
+								{/volist}
+							</ul>
+						</li>
+						{/volist}
+					</ul><!-- /.nav-list -->
